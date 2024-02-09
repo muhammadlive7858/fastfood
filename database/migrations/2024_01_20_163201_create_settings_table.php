@@ -17,7 +17,11 @@ return new class extends Migration
 
             $table->integer('cashback')->nullable();
             $table->integer('pagination')->nullable();
-            $table->string('location')->nullable();
+            $table->string('location_lang')->nullable();
+            $table->string('location_lat')->nullable();
+
+            $table->integer('user_id');
+
         });
     }
 

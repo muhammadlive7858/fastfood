@@ -17,7 +17,8 @@ class OrdersController extends Controller
     }
     //
     public function index(){
-        
+        $orders = Orders::orderBy('id','desc')->get();
+        return view('orders.index',compact('orders'));
     }
 
     public function store(Request $request,$table){

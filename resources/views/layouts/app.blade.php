@@ -213,7 +213,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -257,10 +257,11 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <form action="{{ route('logout') }}" method="post" class="dropdown-item d-flex align-items-center">
+              @csrf
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
+                <button>Sign Out</button>
+              </form>
             </li>
 
           </ul><!-- End Profile Dropdown Items -->
@@ -372,17 +373,25 @@
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="charts-chartjs.html">
+            <a href="{{ route('order.index') }}">
               <i class="bi bi-circle"></i><span>Hisobotlar</span>
             </a>
           </li>
         </ul>
       </li><!-- End Charts Nav -->
+      <li class="nav-heading">Sozlamalar</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('setting.index') }}">
+          <i class="bi bi-person"></i>
+          <span>Sozlamalar</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
 
       <li class="nav-heading">Shaxsiy</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{{ route('user.index') }}">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>

@@ -9,6 +9,12 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\OrderFoodController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettingController;
+
+use App\Http\Controllers\DashboardController;
+
+
 
 
 
@@ -24,12 +30,11 @@ use App\Http\Controllers\OrderFoodController;
 */
 
 Route::get('/', function () {
+    
     return view('welcome');
 });
 // dashboard
-Route::get('/dashboard', function () {
-    return view('tables');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 //resourse
 Route::resource('food', FoodsController::class)->names('food');
@@ -50,6 +55,22 @@ Route::get('service/order/plus/{table}',[ServiceController::class,'plus'])->name
 Route::post('service/order/plussession',[ServiceController::class,'session_plus'])->name('service.order.plussession');
 // Order
 Route::get('order/create/{table}',[OrdersController::class,'store'])->name('order.create');
+// Order CRUD
+Route::get('order/index',[OrdersController::class,'index'])->name('order.index');
+
+// User
+Route::get('user/index',[UserController::class,'index'])->name('user.index');
+Route::post('user/update/{id}',[UserController::class,'update'])->name('user.update');
+Route::get('user/delete',[UserController::class,'destroy'])->name('user.delete');
+// verify phone
+Route::get('verify/phone',[DashboardController::class,'verify_phone'])->name('verify.phone');
+// setting
+Route::get('setting/index',[SettingController::class,'index'])->name('setting.index');
+Route::post('setting/update/{id}',[SettingController::class,'update'])->name('setting.update');
+
+
+
+
 
 
 
